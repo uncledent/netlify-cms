@@ -18,9 +18,6 @@
   ],
   "plugins": [
     "lodash",
-    ["babel-plugin-transform-builtin-extend", {
-      "globals": ["Error"]
-    }],
     ["transform-runtime", {
       "useBuiltIns": true,
       "useESModules": true
