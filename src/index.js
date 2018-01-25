@@ -10,6 +10,7 @@ import { setStore } from 'ValueObjects/AssetProxy';
 import { ErrorBoundary } from 'UI'
 import registry from 'Lib/registry';
 import App from 'App/App';
+import 'Extensions';
 import 'EditorWidgets';
 import 'MarkdownPlugins';
 import './index.css';

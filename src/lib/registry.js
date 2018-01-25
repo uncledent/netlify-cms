@@ -7,6 +7,7 @@ import { newEditorPlugin } from 'EditorWidgets/Markdown/MarkdownControl/plugins'
 const registry = {
   backends: { },
   templates: {},
+  templateParsers: {},
   previewStyles: [],
   widgets: {},
   editorComponents: Map(),
@@ -18,6 +19,8 @@ export default {
   getPreviewStyles,
   registerPreviewTemplate,
   getPreviewTemplate,
+  registerTemplateParser,
+  getTemplateParser,
   registerWidget,
   getWidget,
   resolveWidget,
@@ -44,13 +47,22 @@ export function getPreviewStyles() {
 /**
  * Preview Templates
  */
-export function registerPreviewTemplate(name, component) {
-  registry.templates[name] = component;
+export function registerPreviewTemplate(name, template, dataProvider, parserName) {
+  registry.templates[name] = { template, dataProvider, parserName };
 };
 export function getPreviewTemplate(name) {
   return registry.templates[name];
 };
 
+/**
+ * Preview Template Parsers
+ */
+export function registerTemplateParser(name, parser) {
+  registry.templateParsers[name] = parser;
+};
+export function getTemplateParser(name) {
+  return registry.templateParsers[name];
+};
 
 /**
  * Editor Widgets
