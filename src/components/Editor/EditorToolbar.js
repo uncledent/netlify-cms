@@ -52,7 +52,7 @@ export default class EditorToolbar extends React.Component {
   renderSimplePublishControls = () => {
     const { onPersist, onPersistAndNew, isPersisting, hasChanged, isNewEntry } = this.props;
     if (!isNewEntry && !hasChanged) {
-      return <div className="nc-entryEditor-toolbar-statusPublished">Published</div>;
+      return <div className="nc-entryEditor-toolbar-statusPublished">Generated</div>;
     }
     return (
       <div>
@@ -61,10 +61,10 @@ export default class EditorToolbar extends React.Component {
           classNameButton="nc-entryEditor-toolbar-publishButton"
           dropdownTopOverlap="40px"
           dropdownWidth="150px"
-          label={isPersisting ? 'Publishing...' : 'Publish'}
+          label={isPersisting ? 'Generating...' : 'Generate'}
         >
-          <DropdownItem label="Publish now" icon="arrow" iconDirection="right" onClick={onPersist}/>
-          <DropdownItem label="Publish and create new" icon="add" onClick={onPersistAndNew}/>
+          <DropdownItem label="Generate now" icon="arrow" iconDirection="right" onClick={onPersist}/>
+          <DropdownItem label="Generate and create new" icon="add" onClick={onPersistAndNew}/>
         </Dropdown>
       </div>
     );
