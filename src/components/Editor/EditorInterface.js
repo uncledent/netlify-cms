@@ -154,6 +154,8 @@ class EditorInterface extends Component {
           onPublishAndNew={() => this.handleOnPublish({ createNew: true })}
           enableSave={enableSave}
           user={user}
+          slug={entry.get('slug')}
+          collectionName={collection.get('name')}
           hasChanged={hasChanged}
           displayUrl={displayUrl}
           collection={collection}

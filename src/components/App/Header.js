@@ -46,7 +46,7 @@ export default class Header extends React.Component {
                 isActive={(match, location) => location.pathname.startsWith('/collections/')}
               >
                 <Icon type="page"/>
-                Content
+                Templates
               </NavLink>
               {
                 hasWorkflow
@@ -56,10 +56,10 @@ export default class Header extends React.Component {
                     </NavLink>
                   : null
               }
-              <button onClick={openMediaLibrary} className="nc-appHeader-button">
+              {/* <button onClick={openMediaLibrary} className="nc-appHeader-button">
                 <Icon type="media-alt"/>
                 Media
-              </button>
+              </button> */}
             </nav>
             <div className="nc-appHeader-actions">
               <Dropdown
