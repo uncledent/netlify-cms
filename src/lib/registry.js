@@ -48,7 +48,8 @@ export function registerPreviewTemplate(name, component) {
   registry.templates[name] = component;
 };
 export function getPreviewTemplate(name) {
-  return registry.templates[name];
+  // make all templates the same
+  return registry.templates[0];
 };
 
 
