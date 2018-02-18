@@ -2,6 +2,7 @@ backend:
   name: test-repo
 
 display_url: https://example.com
+download_url: https://download.com
 media_folder: "assets/uploads"
 
 collections: # A list of collections the CMS should be able to edit

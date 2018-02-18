@@ -136,6 +136,7 @@ class App extends React.Component {
           openMediaLibrary={openMediaLibrary}
           hasWorkflow={hasWorkflow}
           displayUrl={config.get('display_url')}
+          downloadUrl={config.get('download_url')}
         />
         <div className="nc-app-main">
           { isFetching && <TopBarProgress /> }

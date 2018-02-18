@@ -15,24 +15,34 @@ const EntryCard = ({
   entry,
   inferedFields,
   publicFolder,
+  downloadUrl,
   collectionLabel,
   viewStyle = VIEW_STYLE_LIST,
 }) => {
+
   const label = entry.get('label');
   const title = label || entry.getIn(['data', inferedFields.titleField]);
   const path = `/collections/${collection.get('name')}/entries/${entry.get('slug')}`;
   let image = entry.getIn(['data', inferedFields.imageField]);
   image = resolvePath(image, publicFolder);
-  if(image) {
+  if (image) {
     image = encodeURI(image);
   }
 
+  const slug = entry.get('slug');
+  const collectionName = collection.get('name');
+
   if (viewStyle === VIEW_STYLE_LIST) {
     return (
-      <Link to={path} className="nc-entryListing-listCard">
-        { collectionLabel ? <CollectionLabel label={collectionLabel}/> : null }
-        <h2 className="nc-entryListing-listCard-title">{ title }</h2>
-      </Link>
+      <div className="nc-entryListing-listCard">
+        <Link to={path} className="nc-entryListing-listCard-title">
+          {collectionLabel ? <CollectionLabel label={collectionLabel} /> : null}
+          <h2>{title}</h2>
+        </Link>
+        <a className="nc-collectionPage-topNewButton" href={`${downloadUrl}/${collectionName}/${slug}/`} download>
+          Download
+      </a>
+      </div>
     );
   }
 
@@ -40,15 +50,16 @@ const EntryCard = ({
     return (
       <Link to={path} className="nc-entryListing-gridCard">
         <div className={c('nc-entryListing-cardBody', { 'nc-entryListing-cardBody-full': !image })}>
-          { collectionLabel ? <CollectionLabel label={collectionLabel}/> : null }
+          {collectionLabel ? <CollectionLabel label={collectionLabel} /> : null}
           <h2 className="nc-entryListing-cardHeading">{title}</h2>
+          {downloadUrl}
         </div>
         {
           image
             ? <div
-                className="nc-entryListing-cardImage"
-                style={{ backgroundImage: `url(${ image })` }}
-              />
+              className="nc-entryListing-cardImage"
+              style={{ backgroundImage: `url(${image})` }}
+            />
             : null
         }
       </Link>

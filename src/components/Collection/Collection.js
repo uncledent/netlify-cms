@@ -19,8 +19,8 @@ class Collection extends React.Component {
   };
 
   renderEntriesCollection = () => {
-    const { name, collection } = this.props;
-    return <EntriesCollection collection={collection} name={name} viewStyle={this.state.viewStyle}/>
+    const { name, collection, downloadUrl } = this.props;
+    return <EntriesCollection collection={collection} name={name} downloadUrl={downloadUrl} viewStyle={this.state.viewStyle}/>
   };
 
   renderEntriesSearch = () => {
@@ -60,11 +60,12 @@ class Collection extends React.Component {
 }
 
 function mapStateToProps(state, ownProps) {
+  const downloadUrl = state.config.get('download_url');
   const { collections } = state;
   const { isSearchResults, match } = ownProps;
   const { name, searchTerm } = match.params;
   const collection = name ? collections.get(name) : collections.first();
-  return { collection, collections, collectionName: name, isSearchResults, searchTerm };
+  return { collection, collections, collectionName: name, isSearchResults, searchTerm, downloadUrl };
 }
 
 export default connect(mapStateToProps)(Collection);

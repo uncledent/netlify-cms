@@ -61,6 +61,7 @@ class Editor extends React.Component {
     slug: PropTypes.string,
     newEntry: PropTypes.bool.isRequired,
     displayUrl: PropTypes.string,
+    downloadUrl: PropTypes.string,
     hasWorkflow: PropTypes.bool,
     unpublishedEntry: PropTypes.bool,
     isModification: PropTypes.bool,
@@ -278,6 +279,7 @@ class Editor extends React.Component {
       user,
       hasChanged,
       displayUrl,
+      downloadUrl,
       hasWorkflow,
       unpublishedEntry,
       newEntry,
@@ -318,6 +320,7 @@ class Editor extends React.Component {
         user={user}
         hasChanged={hasChanged}
         displayUrl={displayUrl}
+        downloadUrl={downloadUrl}
         hasWorkflow={hasWorkflow}
         hasUnpublishedChanges={unpublishedEntry}
         isNewEntry={newEntry}
@@ -342,6 +345,7 @@ function mapStateToProps(state, ownProps) {
   const user = auth && auth.get('user');
   const hasChanged = entryDraft.get('hasChanged');
   const displayUrl = config.get('display_url');
+  const downloadUrl = config.get('download_url');
   const hasWorkflow = config.get('publish_mode') === EDITORIAL_WORKFLOW;
   const isModification = entryDraft.getIn(['entry', 'isModification']);
   const collectionEntriesLoaded = !!entries.getIn(['entities', collectionName])
@@ -360,6 +364,7 @@ function mapStateToProps(state, ownProps) {
     user,
     hasChanged,
     displayUrl,
+    downloadUrl,
     hasWorkflow,
     isModification,
     collectionEntriesLoaded,

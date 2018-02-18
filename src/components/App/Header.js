@@ -12,6 +12,7 @@ export default class Header extends React.Component {
     onCreateEntryClick: PropTypes.func.isRequired,
     onLogoutClick: PropTypes.func.isRequired,
     displayUrl: PropTypes.string,
+    downloadUrl: PropTypes.string,
   };
 
   handleCreatePostClick = (collectionName) => {
@@ -30,6 +31,7 @@ export default class Header extends React.Component {
       openMediaLibrary,
       hasWorkflow,
       displayUrl,
+      downloadUrl
     } = this.props;
 
     const avatarUrl = user.get('avatar_url');

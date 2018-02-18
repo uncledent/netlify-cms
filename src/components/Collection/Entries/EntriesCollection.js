@@ -14,6 +14,7 @@ class EntriesCollection extends React.Component {
     entries: ImmutablePropTypes.list,
     isFetching: PropTypes.bool.isRequired,
     viewStyle: PropTypes.string,
+    downloadUrl: PropTypes.string,
   };
 
   componentDidMount() {
@@ -36,7 +37,7 @@ class EntriesCollection extends React.Component {
   }
 
   render () {
-    const { collection, entries, publicFolder, page, isFetching, viewStyle } = this.props;
+    const { collection, entries, publicFolder, page, isFetching, viewStyle, downloadUrl } = this.props;
 
     return (
       <Entries
@@ -46,6 +47,7 @@ class EntriesCollection extends React.Component {
         page={page}
         onPaginate={this.handleLoadMore}
         isFetching={isFetching}
+        downloadUrl={downloadUrl}
         collectionName={collection.get('label')}
         viewStyle={viewStyle}
       />

@@ -11,6 +11,7 @@ const Entries = ({
   page,
   onPaginate,
   isFetching,
+  downloadUrl,
   viewStyle
 }) => {
   const loadingMessages = [
@@ -28,6 +29,7 @@ const Entries = ({
         page={page}
         onPaginate={onPaginate}
         viewStyle={viewStyle}
+        downloadUrl={downloadUrl}
       />
     );
   }
@@ -46,6 +48,7 @@ Entries.propTypes = {
   page: PropTypes.number,
   isFetching: PropTypes.bool,
   viewStyle: PropTypes.string,
+  downloadUrl: PropTypes.string,
 };
 
 export default Entries;

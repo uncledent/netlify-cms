@@ -75,6 +75,7 @@ class EditorInterface extends Component {
       user,
       hasChanged,
       displayUrl,
+      downloadUrl,
       hasWorkflow,
       hasUnpublishedChanges,
       isNewEntry,
@@ -158,6 +159,7 @@ class EditorInterface extends Component {
           collectionName={collection.get('name')}
           hasChanged={hasChanged}
           displayUrl={displayUrl}
+          downloadUrl={downloadUrl}
           collection={collection}
           hasWorkflow={hasWorkflow}
           hasUnpublishedChanges={hasUnpublishedChanges}
@@ -215,6 +217,7 @@ EditorInterface.propTypes = {
   user: ImmutablePropTypes.map,
   hasChanged: PropTypes.bool,
   displayUrl: PropTypes.string,
+  downloadUrl: PropTypes.string,
   hasWorkflow: PropTypes.bool,
   hasUnpublishedChanges: PropTypes.bool,
   isNewEntry: PropTypes.bool,

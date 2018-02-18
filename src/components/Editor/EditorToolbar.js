@@ -25,6 +25,7 @@ export default class EditorToolbar extends React.Component {
     user: ImmutablePropTypes.map,
     hasChanged: PropTypes.bool,
     displayUrl: PropTypes.string,
+    downloadUrl: PropTypes.string,
     collection: ImmutablePropTypes.map.isRequired,
     hasWorkflow: PropTypes.bool,
     hasUnpublishedChanges: PropTypes.bool,
@@ -78,8 +79,8 @@ export default class EditorToolbar extends React.Component {
 
 
   renderDownloadButton = () => {
-    const { onPersist, slug, collectionName } = this.props;
-    return <a className="nc-collectionPage-topNewButton"  href={`https://hugo.delar.de/${collectionName}/${slug}/`} download>
+    const { onPersist, slug, collectionName, downloadUrl } = this.props;
+    return <a className="nc-collectionPage-topNewButton"  href={`${downloadUrl}/${collectionName}/${slug}/`} download>
       Download
     </a>
   }
@@ -189,6 +190,7 @@ export default class EditorToolbar extends React.Component {
       user,
       hasChanged,
       displayUrl,
+      downloadUrl,
       collection,
       hasWorkflow,
       hasUnpublishedChanges,

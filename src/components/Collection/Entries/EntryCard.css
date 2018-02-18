@@ -46,7 +46,8 @@
   padding: 16px 22px;
   margin-left: 12px;
   margin-bottom: 16px;
-
+  display: flex;
+  align-content: space-between;
   &:hover {
     background-color: var(--colorForeground);
   }
@@ -54,6 +55,7 @@
 
 .nc-entryListing-listCard-title {
   margin-bottom: 0;
+  flex:1;
 }
 
 .nc-entryListing-listCard-collection-label {
