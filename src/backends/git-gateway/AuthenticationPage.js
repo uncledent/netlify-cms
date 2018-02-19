@@ -90,13 +90,12 @@ export default class AuthenticationPage extends React.Component {
     const { error, inProgress } = this.props;
 
     if (window.netlifyIdentity) {
-        this.this.handleIdentity();
-    //   return <section className="nc-gitGatewayAuthenticationPage-root">
-    //     {/* <Icon className="nc-githubAuthenticationPage-logo" size="500px" type="netlify-cms"/> */}
-    //     <button className="nc-githubAuthenticationPage-button" onClick={this.handleIdentity}>
-    //       Login
-    //     </button>
-    //   </section>
+      return <section className="nc-gitGatewayAuthenticationPage-root">
+        {/* <Icon className="nc-githubAuthenticationPage-logo" size="500px" type="netlify-cms"/> */}
+        <button className="nc-githubAuthenticationPage-button" onClick={this.handleIdentity}>
+          Login
+        </button>
+      </section>
     }
 
     return (
