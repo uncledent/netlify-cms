@@ -229,7 +229,7 @@ export function loadEntry(collection, slug) {
       .catch((error) => {
         console.error(error);
         dispatch(notifSend({
-          message: `Failed to load entry: ${ error.message }`,
+          message: `Failed to load entry: ${error.message}`,
           kind: 'danger',
           dismissAfter: 8000,
         }));
@@ -270,6 +270,7 @@ export function persistEntry(collection) {
   return (dispatch, getState) => {
     const state = getState();
     const entryDraft = state.entryDraft;
+
     const fieldsErrors = entryDraft.get('fieldsErrors');
 
     // Early return if draft contains validation errors
@@ -298,8 +299,24 @@ export function persistEntry(collection) {
      */
     const fields = selectFields(collection, entry.get('slug'));
     const serializedData = serializeValues(entryDraft.getIn(['entry', 'data']), fields);
+
+    // console.log('serializedEntry', serializedData._root.entries);
+    if (serializedData && serializedData._root && serializedData._root.entries && serializedData._root.entries.length) {
+      const arrayToFix = serializedData._root.entries;
+      console.log(arrayToFix)
+      for (let index = 0; index < arrayToFix.length; index++) {
+        const element = arrayToFix[index];
+
+        if (element && element[1] && typeof element[1] === 'string') {
+          element[1] = fixMarkdown(element[1]);
+        }
+      }
+    }
+
+
     const serializedEntry = entry.set('data', serializedData);
     const serializedEntryDraft = entryDraft.set('entry', serializedEntry);
+
     dispatch(entryPersisting(collection, serializedEntry));
     return backend
       .persistEntry(state.config, collection, serializedEntryDraft, assetProxies.toJS())
@@ -314,13 +331,36 @@ export function persistEntry(collection) {
       .catch((error) => {
         console.error(error);
         dispatch(notifSend({
-          message: `Failed to persist entry: ${ error }`,
+          message: `Failed to persist entry: ${error}`,
           kind: 'danger',
           dismissAfter: 8000,
         }));
         return Promise.reject(dispatch(entryPersistFail(collection, serializedEntry, error)));
       });
   };
+}
+
+function fixMarkdown(markdown) {
+  const fixedmarkdown = removeEmptySpacesInBoldMarkdown(markdown);
+  return fixedmarkdown;
+}
+
+function removeEmptySpacesInBoldMarkdown(markdown) {
+  var firstFound = false;
+  for (var i = 0; i < markdown.length; i += 1) {
+    if (markdown[i] + markdown[i + 1] === "**") {
+      if (i > 0 && markdown[i-1] === " ") {
+        if (firstFound) {
+          console.log('will remove extra spaces')
+          markdown = markdown.slice(0, i-1) + markdown.slice(i);
+          return removeEmptySpacesInBoldMarkdown(markdown)
+        }
+      }
+      firstFound = !firstFound;
+    };
+  }
+  console.log('removeEmptySpacesInBoldMarkdown finished', markdown)
+  return markdown;
 }
 
 export function deleteEntry(collection, slug) {
@@ -330,17 +370,17 @@ export function deleteEntry(collection, slug) {
 
     dispatch(entryDeleting(collection, slug));
     return backend.deleteEntry(state.config, collection, slug)
-    .then(() => {
-      return dispatch(entryDeleted(collection, slug));
-    })
-    .catch((error) => {
-      dispatch(notifSend({
-        message: `Failed to delete entry: ${ error }`,
-        kind: 'danger',
-        dismissAfter: 8000,
-      }));
-      console.error(error);
-      return Promise.reject(dispatch(entryDeleteFail(collection, slug, error)));
-    });
+      .then(() => {
+        return dispatch(entryDeleted(collection, slug));
+      })
+      .catch((error) => {
+        dispatch(notifSend({
+          message: `Failed to delete entry: ${error}`,
+          kind: 'danger',
+          dismissAfter: 8000,
+        }));
+        console.error(error);
+        return Promise.reject(dispatch(entryDeleteFail(collection, slug, error)));
+      });
   };
 }

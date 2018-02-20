@@ -190,7 +190,7 @@ class Editor extends React.Component {
   handlePersistEntry = async (opts = {}) => {
     const { createNew = false } = opts;
     const { persistEntry, collection, entryDraft, newEntry, currentStatus, hasWorkflow, loadEntry, slug, createEmptyDraft } = this.props;
-
+    console.log(this.props.collection)
     await persistEntry(collection)
 
     if (createNew) {
