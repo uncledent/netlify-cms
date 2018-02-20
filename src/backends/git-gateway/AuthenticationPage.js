@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from "react";
 import { partial } from 'lodash';
-import { Icon } from 'UI';
+// import { Icon } from 'UI';
 
 let component = null;
 
@@ -91,16 +91,16 @@ export default class AuthenticationPage extends React.Component {
 
     if (window.netlifyIdentity) {
       return <section className="nc-gitGatewayAuthenticationPage-root">
-        <Icon className="nc-githubAuthenticationPage-logo" size="500px" type="netlify-cms"/>
+        {/* <Icon className="nc-githubAuthenticationPage-logo" size="500px" type="netlify-cms"/> */}
         <button className="nc-githubAuthenticationPage-button" onClick={this.handleIdentity}>
-          Login with Netlify Identity
+          Login
         </button>
       </section>
     }
 
     return (
       <section className="nc-gitGatewayAuthenticationPage-root">
-        <Icon className="nc-githubAuthenticationPage-logo" size="500px" type="netlify-cms"/>
+        {/* <Icon className="nc-githubAuthenticationPage-logo" size="500px" type="netlify-cms"/> */}
         <form className="nc-gitGatewayAuthenticationPage-form" onSubmit={this.handleLogin}>
           {!error && <p>
             <span className="nc-gitGatewayAuthenticationPage-errorMsg">{error}</span>

@@ -34,7 +34,7 @@ export default class AuthenticationPage extends React.Component {
 
     return (
       <section className="nc-githubAuthenticationPage-root">
-        <Icon className="nc-githubAuthenticationPage-logo" size="500px" type="netlify-cms"/>
+        {/* <Icon className="nc-githubAuthenticationPage-logo" size="500px" type="netlify-cms"/> */}
         {loginError && <p>{loginError}</p>}
         <button
           className="nc-githubAuthenticationPage-button"
