@@ -14,7 +14,7 @@ import onKeyDown from './keys';
 
 const createEmptyRawDoc = () => {
   const emptyText = Text.create('');
-  const emptyBlock = Block.create({ kind: 'block', type: 'paragraph', nodes: [ emptyText ] });
+  const emptyBlock = Block.create({ kind: 'block', type: 'paragraph', nodes: [emptyText] });
   return { nodes: [emptyBlock] };
 };
 
@@ -174,8 +174,26 @@ export default class Editor extends Component {
     const raw = change.value.document.toJSON();
     const plugins = this.state.shortcodePlugins;
     const markdown = slateToMarkdown(raw, plugins);
-    this.props.onChange(markdown);
+    const fixedMarkdown = this.fixMarkdown(markdown);
+    console.log(fixedMarkdown)
+    this.props.onChange(fixedMarkdown);
   }, 150);
+
+  fixMarkdown = (markdown) => {
+    var array = markdown.split('**');
+    if (array.length) {
+      var fixedMarkdown = array.join('**');
+      for (let index = 0; index < array.length; index++) {
+        var element = array[index];
+        console.log(`'${element}'`)
+        element = element.replace(/^[ ]+|[ ]+$/g,'');
+        console.log(`'${element}'`)
+      }
+      return fixedMarkdown;
+    }
+
+    return markdown;
+  }
 
   handleChange = change => {
     if (!this.state.value.document.equals(change.value.document)) {
