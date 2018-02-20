@@ -39,7 +39,7 @@ const EntryCard = ({
           {collectionLabel ? <CollectionLabel label={collectionLabel} /> : null}
           <h2>{title}</h2>
         </Link>
-        <a className="nc-collectionPage-topNewButton" href={`${downloadUrl}/${collectionName}/${slug}/`} download>
+        <a className="nc-collectionPage-topNewButton" href={`${downloadUrl}/${collectionName}/${slug}.html`}  download={`${collectionName}_${slug}.html`}>
           Download
       </a>
       </div>

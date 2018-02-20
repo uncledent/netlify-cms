@@ -80,7 +80,7 @@ export default class EditorToolbar extends React.Component {
 
   renderDownloadButton = () => {
     const { onPersist, slug, collectionName, downloadUrl } = this.props;
-    return <a className="nc-collectionPage-topNewButton"  href={`${downloadUrl}/${collectionName}/${slug}/`} download={`${collectionName}_${slug}.html`}>
+    return <a className="nc-collectionPage-topNewButton"  href={`${downloadUrl}/${collectionName}/${slug}.html`} download={`${collectionName}_${slug}.html`}>
       Download
     </a>
   }
