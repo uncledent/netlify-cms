@@ -32,6 +32,9 @@ const EntryCard = ({
   const slug = entry.get('slug');
   const collectionName = collection.get('name');
 
+  console.log(entry)
+  console.log(entry.get('collection'))
+
   if (viewStyle === VIEW_STYLE_LIST) {
     return (
       <div className="nc-entryListing-listCard">
@@ -39,9 +42,10 @@ const EntryCard = ({
           {collectionLabel ? <CollectionLabel label={collectionLabel} /> : null}
           <h2>{title}</h2>
         </Link>
-        <a className="nc-collectionPage-topNewButton" href={`${downloadUrl}/${collectionName}/${slug}.html`}  download={`${collectionName}_${slug}.html`}>
+        { entry.get('collection') !== "settings" ? <a className="nc-collectionPage-topNewButton" href={`${downloadUrl}/${collectionName}/${slug}.html`}  download={`${collectionName}_${slug}.html`}>
           Download
-      </a>
+        </a> : "" }
+        
       </div>
     );
   }

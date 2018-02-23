@@ -53,7 +53,7 @@ export default class EditorToolbar extends React.Component {
   renderSimplePublishControls = () => {
     const { onPersist, onPersistAndNew, isPersisting, hasChanged, isNewEntry, slug, collectionName } = this.props;
     if (!isNewEntry && !hasChanged) {
-      return <div className="nc-entryEditor-toolbar-statusPublished">Generated</div>;
+      return <div className="nc-entryEditor-toolbar-statusPublished">Saved</div>;
     }
     return (
       <div>
@@ -62,7 +62,7 @@ export default class EditorToolbar extends React.Component {
           backgroundColor: '#798291',
           color: '#ffffff'
         }}
-        onClick={onPersist}>{isPersisting ? 'Generating...' : 'Generate'}</div>
+        onClick={onPersist}>{isPersisting ? 'Saving...' : 'Save & Generate'}</div>
         {/* <Dropdown
           className="nc-entryEditor-toolbar-dropdown"
           classNameButton="nc-entryEditor-toolbar-publishButton"
@@ -80,9 +80,11 @@ export default class EditorToolbar extends React.Component {
 
   renderDownloadButton = () => {
     const { onPersist, slug, collectionName, downloadUrl } = this.props;
-    return <a className="nc-collectionPage-topNewButton"  href={`${downloadUrl}/${collectionName}/${slug}.html`} download={`${collectionName}_${slug}.html`}>
-      Download
-    </a>
+    if (collectionName!=="setting") {
+        return <a className="nc-collectionPage-topNewButton"  href={`${downloadUrl}/${collectionName}/${slug}.html`} download={`${collectionName}_${slug}.html`}>
+        Download
+      </a>
+    }
   }
 
   renderWorkflowSaveControls = () => {
