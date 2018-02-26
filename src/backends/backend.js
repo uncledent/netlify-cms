@@ -144,8 +144,10 @@ class Backend {
       .then(entries => (
         {
           entries: entries.map(this.entryWithFormat(collection)).sort(function(a, b){
+            if (!a.data || !b.data || !a.data.title || !b.data.title) {
+                return 0
+            }
             return naturalCompare(a.data.title, b.data.title);
-            return 0
           }),
         }
       ))
