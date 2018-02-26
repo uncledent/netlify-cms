@@ -15,7 +15,7 @@ import TestRepoBackend from "./test-repo/implementation";
 import GitHubBackend from "./github/implementation";
 import GitGatewayBackend from "./git-gateway/implementation";
 import { registerBackend, getBackend } from 'Lib/registry';
-import { alphanum } from './sorting'
+import * as naturalCompare from 'natural-compare-lite';
 
 /**
  * Register internal backends
@@ -143,7 +143,10 @@ class Backend {
       ))
       .then(entries => (
         {
-          entries: entries.map(this.entryWithFormat(collection)).sort(alphanum),
+          entries: entries.map(this.entryWithFormat(collection)).sort(function(a, b){
+            return naturalCompare(a.data.title, b.data.title);
+            return 0
+          }),
         }
       ))
       // If this collection has a "filter" property, filter entries accordingly
