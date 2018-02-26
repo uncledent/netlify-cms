@@ -39,7 +39,7 @@ const EntryCard = ({
           {collectionLabel ? <CollectionLabel label={collectionLabel} /> : null}
           <h2>{title}</h2>
         </Link>
-        { entry.get('collection') !== "settings" || entry.get('collection') !== "confirmations" ? <a className="nc-collectionPage-topNewButton" href={`${downloadUrl}/${collectionName}/${slug}.html`}  download={`${collectionName}_${slug}.html`}>
+        { entry.get('collection') !== "settings" && entry.get('collection') !== "confirmations" ? <a className="nc-collectionPage-topNewButton" href={`${downloadUrl}/${collectionName}/${slug}.html`}  download={`${collectionName}_${slug}.html`}>
           Download
         </a> : "" }
         
