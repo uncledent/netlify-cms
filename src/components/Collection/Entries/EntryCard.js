@@ -32,9 +32,6 @@ const EntryCard = ({
   const slug = entry.get('slug');
   const collectionName = collection.get('name');
 
-  console.log(entry)
-  console.log(entry.get('collection'))
-
   if (viewStyle === VIEW_STYLE_LIST) {
     return (
       <div className="nc-entryListing-listCard">

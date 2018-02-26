@@ -15,6 +15,7 @@ import TestRepoBackend from "./test-repo/implementation";
 import GitHubBackend from "./github/implementation";
 import GitGatewayBackend from "./git-gateway/implementation";
 import { registerBackend, getBackend } from 'Lib/registry';
+import { alphanum } from './sorting'
 
 /**
  * Register internal backends
@@ -22,7 +23,6 @@ import { registerBackend, getBackend } from 'Lib/registry';
 registerBackend('git-gateway', GitGatewayBackend);
 registerBackend('github', GitHubBackend);
 registerBackend('test-repo', TestRepoBackend);
-
 
 class LocalStorageAuthStore {
   storageKey = "netlify-cms-user";
@@ -143,7 +143,7 @@ class Backend {
       ))
       .then(entries => (
         {
-          entries: entries.map(this.entryWithFormat(collection)),
+          entries: entries.map(this.entryWithFormat(collection)).sort(alphanum),
         }
       ))
       // If this collection has a "filter" property, filter entries accordingly
