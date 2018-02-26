@@ -17,7 +17,7 @@ import './index.css';
 /**
  * Log the version number.
  */
-console.log(`Netlify CMS version ${NETLIFY_CMS_VERSION}`);
+console.log(`Netlify CMS version ${NETLIFY_CMS_VERSION} von 26.02.18 build 1`);
 
 /**
  * Create mount element dynamically.

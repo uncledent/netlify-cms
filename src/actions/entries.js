@@ -300,10 +300,8 @@ export function persistEntry(collection) {
     const fields = selectFields(collection, entry.get('slug'));
     const serializedData = serializeValues(entryDraft.getIn(['entry', 'data']), fields);
 
-    // console.log('serializedEntry', serializedData._root.entries);
     if (serializedData && serializedData._root && serializedData._root.entries && serializedData._root.entries.length) {
       const arrayToFix = serializedData._root.entries;
-      console.log(arrayToFix)
       for (let index = 0; index < arrayToFix.length; index++) {
         const element = arrayToFix[index];
 
