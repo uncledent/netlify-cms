@@ -81,6 +81,7 @@
 .nc-listControl-collapsed {
   & .nc-listControl-objectLabel {
     display: block;
+    overflow: hidden;
   }
   & .nc-listControl-objectControl {
     display: none;
