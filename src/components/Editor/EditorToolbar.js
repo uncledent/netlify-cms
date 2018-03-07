@@ -79,8 +79,9 @@ export default class EditorToolbar extends React.Component {
 
 
   renderDownloadButton = () => {
-    const { onPersist, slug, collectionName, downloadUrl } = this.props;
-    if (collectionName!=="settings" && collectionName!=="confirmations") {
+    const { onPersist, slug, collectionName, downloadUrl, collection } = this.props;
+    const showDownloadButton = !collection.get('downloadDisabled');
+    if (showDownloadButton) {
         return <a className="nc-collectionPage-topNewButton"  href={`${downloadUrl}/${collectionName}/${slug}.html`} download={`${collectionName}_${slug}.html`}>
         Download
       </a>

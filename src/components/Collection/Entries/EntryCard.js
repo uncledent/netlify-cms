@@ -31,6 +31,7 @@ const EntryCard = ({
 
   const slug = entry.get('slug');
   const collectionName = collection.get('name');
+  const showDownloadButton = !collection.get('downloadDisabled');
 
   if (viewStyle === VIEW_STYLE_LIST) {
     return (
@@ -39,7 +40,7 @@ const EntryCard = ({
           {collectionLabel ? <CollectionLabel label={collectionLabel} /> : null}
           <h2>{title}</h2>
         </Link>
-        { entry.get('collection') !== "settings" && entry.get('collection') !== "confirmations" ? <a className="nc-collectionPage-topNewButton" href={`${downloadUrl}/${collectionName}/${slug}.html`}  download={`${collectionName}_${slug}.html`}>
+        { showDownloadButton ? <a className="nc-collectionPage-topNewButton" href={`${downloadUrl}/${collectionName}/${slug}.html`}  download={`${collectionName}_${slug}.html`}>
           Download
         </a> : "" }
         
